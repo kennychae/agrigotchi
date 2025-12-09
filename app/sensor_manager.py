@@ -1,0 +1,1 @@
+#sensor_manager.py 센서 검색 및 통신
