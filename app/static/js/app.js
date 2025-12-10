@@ -1,16 +1,3 @@
-///////////////
-// dashboard //
-async function loadData() {
-    const res = await fetch("/api/data/latest");
-    const data = await res.json();
-
-    document.getElementById("temperature").innerText = data.temperature;
-    document.getElementById("humidity").innerText = data.humidity;
-    document.getElementById("ai_result").innerText = data.ai_result;
-}
-
-loadData();
-
 /////////
 //setup//
 async function completeSetup() {

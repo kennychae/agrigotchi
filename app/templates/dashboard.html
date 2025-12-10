@@ -2,17 +2,34 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h2>대시보드</h2>
+    <div id="top-bar">
+        <div id="left-section">
+            <span id="home-icon" onclick="changeView('status')">🏠</span>
+            <span class="menu-item" onclick="changeView('status')">현재 상황 체크</span>
+            <span class="menu-item" onclick="changeView('growth')">생육 관련 체크</span>
+            <span class="menu-item" onclick="changeView('disease')">병충해 관련 체크</span>
+            <span class="menu-item" onclick="changeView('device')">기기 설정</span>
+        </div>
 
-    <div>
-        <p>온도: <span id="temperature"></span></p>
-        <p>습도: <span id="humidity"></span></p>
-        <p>AI 결과: <span id="ai_result"></span></p>
+        <div id="right-section">
+            <span id="live-clock"></span>
+            <a id="logout-btn" href="/logout">로그아웃</a>
+        </div>
     </div>
 
-    <a href="/logout">로그아웃</a>
-    <script src="/static/js/app.js"></script>
+
+    <!-- 메인 화면 영역 -->
+    <div id="main-content">
+        <!-- 첫 화면: 현재 상황 -->
+        <div id="content-status" class="content-view">현재 상황 화면</div>
+        <div id="content-growth" class="content-view" style="display:none;">생육 관련 화면</div>
+        <div id="content-disease" class="content-view" style="display:none;">병충해 관련 화면</div>
+        <div id="content-device" class="content-view" style="display:none;">기기 설정 화면</div>
+    </div>
+
+    <script src="/static/js/dashboard_ui.js"></script>
 </body>
 </html>
