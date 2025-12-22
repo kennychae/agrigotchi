@@ -1,0 +1,29 @@
+# .gitignore
+
+# ===== IDE =====
+.vscode/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+app/__pycache__/
+
+# ===== PyInstaller =====
+build/
+dist/
+*.spec
+run_server.spec
+
+# ===== Config & Database =====
+config.json
+sensor.db
+*.db
+
+# ===== 가상환경 =====
+venv/
+env/
+
+# ===== OS =====
+.DS_Store
+*~
