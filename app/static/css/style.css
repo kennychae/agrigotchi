@@ -152,3 +152,79 @@ body {
 #content-disease {
     padding-top: 16px;
 }
+
+/* ===== 설정 화면 ===== */
+
+.section-title-box {
+    margin-bottom: 20px;
+}
+
+.section-title-box h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.section-desc {
+    margin-top: 6px;
+    color: #666;
+    font-size: 14px;
+}
+
+.content-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+
+.content-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.content-card input[type="text"],
+.content-card input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.content-card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1C1C1C;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.content-card button:hover {
+    background-color: #333;
+}
+
+.checkbox-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+#setup-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.setup-title-box {
+    text-align: center;
+    margin-bottom: 30px;
+}

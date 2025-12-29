@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Setup</title>
+    <title>설정</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h2>초기 설정</h2>
 
-    <h3>비밀번호 변경</h3>
-    <input type="password" id="new_pw" placeholder="새 비밀번호">
-    <button onclick="changePassword()">변경</button>
+<!-- 상단바 (대시보드 톤 재사용) -->
+<div id="top-bar">
+    <div id="left-section">
+        <span id="home-icon" onclick="location.href='/dashboard'">🏠</span>
+    </div>
+</div>
 
-    <h3>센서 등록</h3>
-    <input type="text" id="device_id" placeholder="device_001">
-    <button onclick="registerSensor()">등록</button>
+<div id="setup-content">
+    <div class="content-view">
 
-    <button onclick="completeSetup()">설정 완료</button>
-    <script src="/static/js/app.js"></script>
+        <div class="setup-title-box">
+            <h2>설정</h2>
+        </div>
+
+        <!-- 비밀번호 변경 -->
+        <div class="content-card">
+            <h3>비밀번호 변경</h3>
+            <input type="password" id="new-password" placeholder="새 비밀번호">
+            <button onclick="changePassword()">비밀번호 변경</button>
+        </div>
+
+        <!-- 기기 설정 -->
+        <div class="content-card">
+            <h3>기기 설정</h3>
+            <input type="text" id="device-name" placeholder="기기 이름 (예: raspi-1)">
+            <input type="text" id="device-ip" placeholder="기기 IP (예: 192.168.0.3)">
+            <label class="checkbox-line">
+                <input type="checkbox" id="device-enabled">
+                기기 사용
+            </label>
+            <button onclick="registerSensor()">기기 설정 저장</button>
+        </div>
+        <div class="content-card">
+            <button onclick="completeSetup()">설정 완료</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="/static/js/app.js"></script>
 </body>
 </html>

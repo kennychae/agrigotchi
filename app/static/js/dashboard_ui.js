@@ -37,7 +37,7 @@ function addLogItem(data) {
         </div>
     `;
 
-    logList.prepend(log);
+    logList.appendChild(log);
 }
 
 async function loadAllLogs() {
@@ -48,11 +48,12 @@ async function loadAllLogs() {
         const logList = document.getElementById("log-list");
         logList.innerHTML = ""; // 기존 로그 비우기
 
-        // logs는 오래된 순이므로 → 최신이 위로 가려면 뒤에서부터 추가
-        for (let i = logs.length - 1; i >= 0; i--) {
-            addLogItem(logs[i]);
+        // log 추가
+        logs.reverse(); // 오래된 순이므로 역순으로 변경
+        for (const item of logs) {
+            addLogItem(item);
         }
-
+        refreshCamImage();
     } catch (err) {
         console.log("전체 로그 불러오기 실패:", err);
     }
@@ -119,7 +120,13 @@ function renderDiseaseCounts(aiResultStr) {
     .join("\n");
 }
 
+function refreshCamImage() {
+    const img = document.getElemnetById("cam-image");
+    if (!img) return;
+    img.src = "/static/images/cam1.jpg?t=" + Date.now();
+}
+
 // 처음 페이지 열 때 전체 로그 불러오기
 loadAllLogs();
-
+// 주기적으로 로그 갱신
 setInterval(loadALLlogs, 10000);
