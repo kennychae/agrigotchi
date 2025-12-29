@@ -42,3 +42,31 @@ def get_all_data():
         })
 
     return result
+
+@router.get("/api/ai/latest")
+def get_latest_ai():
+    db = SessionLocal()
+    row = db.query(SensorData).order_by(SensorData.timestamp.desc()).first()
+    db.close()
+
+    if not row:
+        return {"timestamp": None, "ai_result": None}
+
+    return {
+        "timestamp": row.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+        "ai_result": row.ai_result
+    }
+
+@router.get("/api/ai/all")
+def get_all_ai():
+    db = SessionLocal()
+    rows = db.query(SensorData).order_by(SensorData.timestamp.asc()).all()
+    db.close()
+
+    result = []
+    for r in rows:
+        result.append({
+            "timestamp": r.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+            "ai_result": r.ai_result
+        })
+    return result

@@ -24,7 +24,7 @@
     <!-- 메인 화면 영역 -->
     <div id="main-content">
         <div id="content-status" class="content-view">
-            <div id="current-status-box">
+            <div id="section-title-box">
                 <h2>현재 상황</h2>
             </div>
 
@@ -46,7 +46,27 @@
 
 
         <div id="content-growth" class="content-view" style="display:none;">생육 관련 화면</div>
-        <div id="content-disease" class="content-view" style="display:none;">병충해 관련 화면</div>
+        <div id="content-disease" class="content-view" style="display:none;">
+            <div class="section-title-box">
+                <h2>병충해</h2>
+            </div>
+            <div id="disease-layout">
+                <!-- 상단: 최신 결과 -->
+                <div id="ai-latest-box">
+                    <h3>최근 AI 판정</h3>
+                    <div id="ai-latest-time">-</div>
+                    <pre id="ai-latest-result">-</pre>
+                </div>
+
+                <!-- 하단: 누적 결과 로그 -->
+                <div id="ai-log-box">
+                    <h3>AI 결과 로그</h3>
+                    <div id="ai-log-list"></div>
+                </div>
+            </div>
+
+        </div>
+
         <div id="content-device" class="content-view" style="display:none;">기기 설정 화면</div>
     </div>
 

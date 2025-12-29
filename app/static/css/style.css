@@ -56,14 +56,6 @@ body {
     border-radius: 10px;
 }
 
-/* 현재 상황 카드 */
-#current-status-box {
-    background: #ffffff;
-    padding: 15px 20px;
-    border-radius: 10px;
-    width: 100px;
-}
-
 /* 메인 레이아웃: 좌→이미지, 우→로그 */
 #main-layout {
     display: flex;
@@ -106,4 +98,57 @@ body {
 .log-data {
     margin-top: 4px;
     font-size: 14px;
+}
+
+#disease-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#ai-latest-box, #ai-log-box {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#ai-latest-result {
+  margin: 10px 0 0 0;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.ai-log-item {
+  background: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.ai-log-time {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.ai-log-result {
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.section-title-box {
+    background: #ffffff;
+    padding: 10px 16px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 0px;
+}
+
+#content-disease {
+    padding-top: 16px;
 }

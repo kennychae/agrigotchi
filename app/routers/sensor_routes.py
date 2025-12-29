@@ -3,6 +3,11 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from datetime import datetime
 
+# import sys
+# sys.path.append("/model/fruit")
+#
+# from predict import quick_predict
+
 router = APIRouter()
 
 class SensorData(BaseModel):
