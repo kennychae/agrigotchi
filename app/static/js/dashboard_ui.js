@@ -19,6 +19,7 @@ function changeView(view) {
     // 병충해 탭 들어갈 때 AI 결과 로드
     if (view === "disease") {
         loadDiseaseAI();
+        refreshCamImage();
     }
 }
 
@@ -53,6 +54,8 @@ async function loadAllLogs() {
         for (const item of logs) {
             addLogItem(item);
         }
+
+        refreshCamImage()
     } catch (err) {
         console.log("전체 로그 불러오기 실패:", err);
     }
@@ -145,7 +148,46 @@ function renderDiseaseCounts(aiResultStr) {
     .join("\n");
 }
 
-// 처음 페이지 열 때 전체 로그 불러오기
+function refreshCamImage() {
+  const img1 = document.getElementById("cam-image-1");
+  const img2 = document.getElementById("cam-image-2");
+  if (!img1 || !img2) return;
+
+  const t = Date.now(); // 캐시 무력화
+  img1.src = `/static/images/leaf_result.jpg?t=${t}`;
+  img2.src = `/static/images/fruit_result.jpg?t=${t}`;
+}
+
+function refreshLatestImage() {
+  const img = document.getElementById("latest-image");
+  if (!img) return;
+
+  const t = Date.now();
+  img.src = `/static/images/cam1.jpg?t=${t}`;
+}
+
+function getCurrentView() {
+  const views = ["status", "growth", "disease", "device"];
+  for (const v of views) {
+    const el = document.getElementById(`content-${v}`);
+    if (el && el.style.display !== "none") return v;
+  }
+  return "status";
+}
+
+// 처음 페이지 열 때
+refreshLatestImage()
 loadAllLogs();
-// 주기적으로 로그 갱신
-setInterval(loadAllLogs, 10000);
+
+// 주기적으로 갱신 (현재 화면 기준)
+setInterval(() => {
+  const view = getCurrentView();
+
+  if (view === "disease") {
+    refreshCamImage();
+    loadDiseaseAI();
+  } else if (view === "status") {
+    refreshLatestImage()
+    loadAllLogs();
+  }
+}, 10000);
