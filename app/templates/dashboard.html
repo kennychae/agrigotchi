@@ -10,7 +10,7 @@
         <div id="left-section">
             <span id="home-icon" onclick="changeView('status')">🏠</span>
             <span class="menu-item" onclick="changeView('status')">현재 상황</span>
-            <span class="menu-item" onclick="changeView('growth')">생육</span>
+<!--            <span class="menu-item" onclick="changeView('growth')">생육</span>-->
             <span class="menu-item" onclick="changeView('disease')">병충해</span>
             <span class="menu-item" onclick="location.href='/setup'">설정</span>
         </div>
@@ -30,7 +30,7 @@
 
             <div id="main-layout">
                 <div id="image-box">
-                    <img id="cam-image" src="/static/images/cam1.jpg"
+                    <img id="latest-image" src="/static/images/cam1.jpg"
                          style="width: 100%; border-radius: 8px;">
                 </div>
                 <div id="log-box">
@@ -51,17 +51,40 @@
                 <h2>병충해</h2>
             </div>
             <div id="disease-layout">
-                <!-- 상단: 최신 결과 -->
-                <div id="ai-latest-box">
-                    <h3>최근 AI 판정</h3>
-                    <div id="ai-latest-time">-</div>
-                    <pre id="ai-latest-result">-</pre>
+                <!-- 캠 이미지 2개 -->
+                <div id="cam-box-1" class="cam-box">
+                    <h3>잎</h3>
+                    <img src="/static/images/leaf_result.jpg" class="cam-image">
                 </div>
 
-                <!-- 하단: 누적 결과 로그 -->
-                <div id="ai-log-box">
+                <div id="cam-box-2" class="cam-box">
+                    <h3>열매</h3>
+                    <img src="/static/images/fruit_result.jpg" class="cam-image">
+                </div>
+                <!-- 상단: 로그1 최신 결과 -->
+                <div id="ai-latest-box-1">
+                    <h3>최근 AI 판정</h3>
+                    <div id="ai-latest-time-1">-</div>
+                    <pre id="ai-latest-result-1">-</pre>
+                </div>
+
+                <!-- 상단: 로그2 최신 결과 -->
+                <div id="ai-latest-box-2">
+                    <h3>최근 AI 판정</h3>
+                    <div id="ai-latest-time-2">-</div>
+                    <pre id="ai-latest-result-2">-</pre>
+                </div>
+
+                <!-- 하단: 로그1 누적 결과 로그 -->
+                <div id="ai-log-box-1">
                     <h3>AI 결과 로그</h3>
-                    <div id="ai-log-list"></div>
+                    <div id="ai-log-list-1"></div>
+                </div>
+
+                <!-- 하단: 로그2 누적 결과 로그 -->
+                <div id="ai-log-box-2">
+                    <h3>AI 결과 로그</h3>
+                    <div id="ai-log-list-2"></div>
                 </div>
             </div>
 

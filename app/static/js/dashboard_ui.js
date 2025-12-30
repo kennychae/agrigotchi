@@ -53,7 +53,6 @@ async function loadAllLogs() {
         for (const item of logs) {
             addLogItem(item);
         }
-        refreshCamImage();
     } catch (err) {
         console.log("전체 로그 불러오기 실패:", err);
     }
@@ -64,8 +63,12 @@ async function loadDiseaseAI() {
   try {
     const res = await fetch("/api/ai/latest");
     const data = await res.json();
-    document.getElementById("ai-latest-time").innerText = data.timestamp ?? "-";
-    document.getElementById("ai-latest-result").innerText = renderDiseaseCounts(data.ai_result);
+
+    document.getElementById("ai-latest-time-1").innerText = data.timestamp ?? "-";
+    document.getElementById("ai-latest-result-1").innerText = renderDiseaseCounts(data.ai_result);
+
+    document.getElementById("ai-latest-time-2").innerText = data.timestamp ?? "-";
+    document.getElementById("ai-latest-result-2").innerText = renderDiseaseCounts(data.ai_result2);
   } catch (e) {
     console.log("AI latest 로드 실패:", e);
   }
@@ -75,19 +78,31 @@ async function loadDiseaseAI() {
     const res = await fetch("/api/ai/all");
     const logs = await res.json();
 
-    const list = document.getElementById("ai-log-list");
-    list.innerHTML = "";
+    const list1 = document.getElementById("ai-log-list-1");
+    const list2 = document.getElementById("ai-log-list-2");
+    list1.innerHTML = "";
+    list2.innerHTML = "";
 
-    // 최신이 위로 보이게: 뒤에서부터 prepend or 역순 loop
     for (let i = logs.length - 1; i >= 0; i--) {
       const item = logs[i];
-      const div = document.createElement("div");
-      div.className = "ai-log-item";
-      div.innerHTML = `
+
+      // 로그1
+      const div1 = document.createElement("div");
+      div1.className = "ai-log-item";
+      div1.innerHTML = `
         <div class="ai-log-time">${item.timestamp ?? "-"}</div>
         <div class="ai-log-result">${renderDiseaseCounts(item.ai_result).replaceAll("\n", "<br>")}</div>
       `;
-      list.appendChild(div);
+      list1.appendChild(div1);
+
+      // 로그2
+      const div2 = document.createElement("div");
+      div2.className = "ai-log-item";
+      div2.innerHTML = `
+        <div class="ai-log-time">${item.timestamp ?? "-"}</div>
+        <div class="ai-log-result">${renderDiseaseCounts(item.ai_result2).replaceAll("\n", "<br>")}</div>
+      `;
+      list2.appendChild(div2);
     }
   } catch (e) {
     console.log("AI all 로드 실패:", e);
@@ -104,29 +119,33 @@ function renderDiseaseCounts(aiResultStr) {
     return aiResultStr; // JSON 아니면 그냥 원문
   }
 
-  const counts = obj.class_counts || obj.classCounts || obj.summary; // 혹시 키가 다를 때 대비
-  if (!counts || typeof counts !== "object") return "-";
-
   const nameMap = {
     "Fresh leaves": "신선한 잎",
     "Fresh leaf": "신선한 잎",
     "Dying leaves": "죽은 잎",
-    "Dying leaf": "죽은 잎"
+    "Dying leaf": "죽은 잎",
+    "OK": "정상",
+    "NG": "질병 의심"
   };
 
-  // "신선한 잎 : 2\n죽은 잎 : 1" 형태로 만들기
+  if (obj.result === "OK" || obj.result === "NG") {
+    return `${nameMap[obj.result]} (${obj.confidence?.toFixed(2) ?? "-"})`;
+  }
+
+  const counts =
+    obj.class_counts ||
+    obj.classCounts ||
+    obj.summary ||
+    obj;
+
+  if (!counts || typeof counts !== "object") return "-";
+
   return Object.entries(counts)
     .map(([k, v]) => `${nameMap[k] ?? k} : ${v}`)
     .join("\n");
 }
 
-function refreshCamImage() {
-    const img = document.getElemnetById("cam-image");
-    if (!img) return;
-    img.src = "/static/images/cam1.jpg?t=" + Date.now();
-}
-
 // 처음 페이지 열 때 전체 로그 불러오기
 loadAllLogs();
 // 주기적으로 로그 갱신
-setInterval(loadALLlogs, 10000);
+setInterval(loadAllLogs, 10000);

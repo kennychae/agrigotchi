@@ -25,7 +25,8 @@ class SensorData(Base):
     temperature = Column(Float)
     humidity = Column(Float)
     co2 = Column(Float)
-    ai_result = Column(String)  # JSON string or text
+    ai_result = Column(String)  # 로그1
+    ai_result2 = Column(String)  # 로그2
 
 def init_db():
     Base.metadata.create_all(bind=engine)

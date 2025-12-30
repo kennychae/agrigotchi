@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     <title>Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body>
-    <h2>로그인</h2>
-    <form method="post" action="/login">
-        <input type="text" name="username" placeholder="admin"><br>
-        <input type="password" name="password" placeholder="1234"><br>
-        <button type="submit">로그인</button>
-    </form>
+<body class="login-body">
 
-    {% if error %}
-        <p style="color:red">{{ error }}</p>
-    {% endif %}
+<div class="login-wrapper">
+    <div class="login-card">
+        <h2 class="login-title">로그인</h2>
+        <p class="login-desc">농가 모니터링 시스템</p>
+
+        <form method="post" action="/login">
+            <input type="text" name="username" placeholder="admin"><br>
+            <input type="password" name="password" placeholder="1234"><br>
+            <button type="submit">로그인</button>
+        </form>
+
+        {% if error %}
+        <div class="login-error">{{ error }}</div>
+        {% endif %}
+    </div>
+</div>
+
 </body>
 </html>

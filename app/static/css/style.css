@@ -228,3 +228,129 @@ body {
     text-align: center;
     margin-bottom: 30px;
 }
+
+/* ===== 병충해: 2개 캠 + 2개 AI ===== */
+#disease-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* 캠 박스 */
+.cam-box {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cam-box h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.cam-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* AI 카드 공통 */
+#ai-latest-box-1, #ai-latest-box-2,
+#ai-log-box-1, #ai-log-box-2 {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 최신 결과 pre */
+#ai-latest-result-1, #ai-latest-result-2 {
+  margin-top: 10px;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+
+/* 로그 리스트 */
+#ai-log-list-1, #ai-log-list-2 {
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* 반응형: 모바일은 1열 */
+@media (max-width: 900px) {
+  #disease-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 로그인 화면 ===== */
+body.login-body {
+    margin: 0;
+    background: linear-gradient(135deg, #1C1C1C, #2e2e2e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* wrapper */
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 40px 36px;
+    border-radius: 14px;
+    width: 360px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+/* 폼 정렬 */
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+/* input, button 폭 통일 */
+.login-card input,
+.login-card button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-card input {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.login-card button {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    background-color: #1C1C1C;
+    color: white;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background-color: #333;
+}
+
+.login-error {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #ff4d4d;
+}

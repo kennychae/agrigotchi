@@ -54,7 +54,8 @@ def get_latest_ai():
 
     return {
         "timestamp": row.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
-        "ai_result": row.ai_result
+        "ai_result": row.ai_result,
+        "ai_result2": row.ai_result2
     }
 
 @router.get("/api/ai/all")
@@ -67,6 +68,7 @@ def get_all_ai():
     for r in rows:
         result.append({
             "timestamp": r.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
-            "ai_result": r.ai_result
+            "ai_result": r.ai_result,
+            "ai_result2": r.ai_result2
         })
     return result
